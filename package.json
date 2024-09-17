@@ -9,16 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.4",
+    "@tanstack/react-query": "^5.51.11",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.394.0",
+    "luxon": "^3.5.0",
+    "next": "14.2.3",
+    "react": "^18.3.1",
+    "react-date-range": "^2.0.1",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "react-hook-form": "^7.51.5",
+    "styled-components": "^6.1.12",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/lodash": "^4.17.7",
+    "@types/luxon": "^3.4.2",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-date-range": "^1.4.9",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "sass": "^1.77.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

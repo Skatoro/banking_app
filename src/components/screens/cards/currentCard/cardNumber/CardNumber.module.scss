@@ -1,0 +1,22 @@
+
+.copyClipboardText {
+  display: none;
+}
+
+.hoverParent:hover .copyClipboardText {
+  display: block;
+  @apply bg-darkGrey text-tertiary p-2 rounded-lg;
+  font-size: 12px;
+}
+.copyClipboardText:after{
+  transform: translate(-50%, 50%) rotate(45deg);
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  content: '';
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
+  @apply bg-darkGrey;
+  pointer-events: none;
+}

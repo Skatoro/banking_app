@@ -1,0 +1,1 @@
+export const referralBonusAmount = 15;

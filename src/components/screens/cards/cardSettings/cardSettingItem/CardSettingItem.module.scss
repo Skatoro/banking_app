@@ -1,0 +1,31 @@
+.dropdownAnimation {
+  transition: max-height .3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.rotateIconActivate {
+  animation: rotateIconActivate .3s;
+  transform: rotate(180deg);
+}
+
+@keyframes rotateIconActivate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.rotateIconDisable {
+  animation: rotateIconDisable .3s;
+  transform: rotate(0);
+}
+
+@keyframes rotateIconDisable {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}

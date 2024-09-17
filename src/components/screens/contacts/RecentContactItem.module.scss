@@ -1,0 +1,19 @@
+
+.fullName {
+  display: none;
+}
+.hoverParent:hover .fullName {
+  display: block;
+  @apply  p-2 rounded-lg;
+}
+.fullName:after{
+  transform: translate(-50%, 50%) rotate(45deg);
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  content: '';
+  top: -8px;
+  left: 50%;
+  z-index: 1;
+  pointer-events: none;
+}

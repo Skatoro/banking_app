@@ -1,0 +1,14 @@
+
+.cancelTransaction {
+  background: linear-gradient(to left, rgb(254 242 241) 50%, rgb(250 205 205)  50%) right;
+  background-size: 200%;
+  animation: gradientAnimation 5s ease-in;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
