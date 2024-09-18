@@ -54,6 +54,10 @@ export const EnterReferral = () => {
                 setOperationMessage('This user does not have any cards')
                 return handleUnmount()
             }
+            if (cards.length === 0) {
+                setOperationMessage('You don`t have any cards to which you can receive a referral')
+                return handleUnmount()
+            }
 
             const [activationError, referralBalanceChangeError, userBalanceChangeError] = await Promise.all([
                 setReferralActivated(user.id),

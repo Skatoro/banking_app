@@ -35,7 +35,7 @@ export default function Cards() {
                                 {haveCard && <CardSettings/>}
                                 <div className={'flex justify-between'}>
                                     <Button onClick={() => setShownCardForm(!shownCardForm)}
-                                        className={`bg-primary hover:bg-primary-darker ${!haveCard ? 'w-full' : ''}`}
+                                            className={`bg-primary hover:bg-primary-darker ${!haveCard ? 'w-full' : ''}`}
                                     >
                                         Add Card &nbsp; &nbsp; +
                                     </Button>
@@ -52,8 +52,10 @@ export default function Cards() {
                                     <CardForm setShownCardForm={setShownCardForm} ownerName={user.full_name}/>
                                 </FormFrame>}
                             {shownDeleteConfirmation
-                                && <DeleteCardConfirm setShownDeleteConfirm={setShownDeleteConfirmation}
-                                                      id={cards[activeCard].id}/>}
+                                && <FormFrame disableForm={() => setShownDeleteConfirmation(false)} cross={false}>
+                                    <DeleteCardConfirm setShownDeleteConfirm={setShownDeleteConfirmation}
+                                                       id={cards[activeCard].id}/>
+                                </FormFrame>}
                         </>
                         : <div className={'h-125 '}>
                             <Loader size={50}/>

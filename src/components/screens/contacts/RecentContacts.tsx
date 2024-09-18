@@ -70,11 +70,13 @@ export default function ContactsMain() {
                 <div className={`absolute left-20 flex`}>
                     {contacts?.map((contactUser, index: number) => {
                         if (index < childrenAmount) {
-                            return <RecentContactItem
-                                key={index}
-                                user={contactUser}
-                                isLast={index === childrenAmount - 1}
-                            />
+                            if (contactUser?.full_name) {
+                                return <RecentContactItem
+                                    key={index}
+                                    user={contactUser}
+                                    isLast={index === childrenAmount - 1}
+                                />
+                            }
                         }
                     })}
                 </div>

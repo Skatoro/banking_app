@@ -11,22 +11,24 @@ import {currency} from "@/constants/currency";
 import {toggleBlockCard} from "@/api/api";
 import {BlockAnimation} from "@/components/ui/blockAnimation/BlockAnimation";
 import {RotateCcw} from "lucide-react";
-import {prettifyBalance} from "@/utils/globalFunctions/prettifyBalance";
-import {getRandomEmoji} from "@/utils/globalFunctions/getRandomEmoji";
 import {ConditionalBalance} from "@/components/ui/conditionalBalance/ConditionalBalance";
+import {DeleteCardConfirm} from "@/components/screens/cards/deleteCardConfirm/DeleteCardConfirm";
+import {FormFrame} from "@/components/ui/formFrame/FormFrame";
 
 interface Props {
     card: ICard
     cardIndex: number
     name: string
+    userId: string
     hideBalance: boolean
     showDecimal: boolean
 }
 
-export const DetailedCardItem: FC<Props> = memo(({card, cardIndex, name, hideBalance, showDecimal}) => {
+export const DetailedCardItem: FC<Props> = memo(({card, cardIndex, name, userId, hideBalance, showDecimal}) => {
     const updateActive = cardsStore((state: any) => state.updateActive)
     const activeCardIndex = cardsStore((state: any) => state.active)
     const isCurrentActive = activeCardIndex === cardIndex
+    const [shownDeleteConfirmation, setShownDeleteConfirmation] = useState(false);
 
     const [isBlockAvailable, setIsBlockAvailable] = useState(false)
 
@@ -53,7 +55,7 @@ export const DetailedCardItem: FC<Props> = memo(({card, cardIndex, name, hideBal
     return (<>
             <div className={'w-full mb-3 p-3  rounded-xl border-4  flex justify-between ' +
                 `${isCurrentActive
-                    ? 'bg-grey/90 text-white border-stone-800 dark:bg-secondary/30 dark:border-stone-200'
+                    ? 'bg-grey/90 text-white border-stone-800 dark:bg-secondary/80 dark:border-stone-200 dark:text-black'
                     : "bg-secondary/30 border-stone-200 dark:bg-grey/90 dark:border-stone-800 dark:text-white"}`}
             >
                 <div className={'relative overflow-hidden rounded-2xl text-white '}>
@@ -73,29 +75,46 @@ export const DetailedCardItem: FC<Props> = memo(({card, cardIndex, name, hideBal
 
                 <div className={'flex'}>
                     <div className={'mr-5 mt-6 font-bold text-4xl'}>
-                        <ConditionalBalance
-                            balance={Number(card.balance)} emojiClass={'text-6xl mt-1'} afterText={currency}
-                            hideBalance={hideBalance} showDecimal={showDecimal}
-                        />
+                        <div className={'mb-3'}>
+                            <ConditionalBalance
+                                balance={Number(card.balance)} emojiClass={'text-6xl mt-1'} afterText={currency}
+                                hideBalance={hideBalance} showDecimal={showDecimal}
+                            />
+                        </div>
+                        <div className={'text-lg flex justify-end'}>
+                            Transactions: {card?.transactions && card?.transactions.length || 0}
+                        </div>
                     </div>
                     <div className={'flex flex-col justify-around w-40'}>
                         <Button className={`bg-primary border-2 border-transparent 
-                                ${isCurrentActive ? '!border-black' : 'hover:bg-primary-darker'}`}
+                                ${isCurrentActive ? '' : 'hover:bg-primary-darker'}`}
                                 onClick={() => updateActive(cardIndex)}
                                 disabled={isCurrentActive}
                         >
                             {isCurrentActive ? 'Active' : 'Set Active'}
                         </Button>
                         <Button className={`bg-pink-lighter !text-red-500 hover:bg-pink border-2 border-transparent 
-                                ${isCurrentActive && '!border-black'}`}
+                                ${isCurrentActive && ''}`}
                                 onClick={handleBlock}
                                 disabled={!isBlockAvailable} disabledStyle={'!bg-pink-lighter'}
                         >
                             {card.blocked ? 'Unblock' : 'Block Card'}
                         </Button>
+                        <Button className={`bg-pink-lighter !text-red-500 hover:bg-pink border-2 border-transparent 
+                                ${isCurrentActive && ''}`}
+                                onClick={() => setShownDeleteConfirmation(true)}
+                        >
+                            Delete Card
+                        </Button>
                     </div>
                 </div>
             </div>
+
+            {shownDeleteConfirmation
+                && <FormFrame disableForm={() => setShownDeleteConfirmation(false)} cross={false}>
+                    <DeleteCardConfirm setShownDeleteConfirm={setShownDeleteConfirmation}
+                                       id={card.id}/>
+                </FormFrame>}
         </>
     )
 })

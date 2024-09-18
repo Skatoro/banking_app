@@ -31,7 +31,7 @@ export default function MainProvider({children}: PropsWithChildren<unknown>) {
         fetchUser().then((user: IUser) => {
             if (!!user) {
                 subscribeUser(user, updateUser)
-                fetchCards(user).then((cards: ICard[]) => {
+                fetchCards(user.id).then((cards: ICard[]) => {
                     if (!!cards) {
                         subscribeCards(cards, updateCards)
                     }

@@ -18,7 +18,7 @@ export function Button(
         onClick,
         children,
         disabled,
-        disabledStyle = '!bg-primary-lighter',
+        disabledStyle = '!bg-primary-lighter cursor-not-allowed',
         Icon,
     }: IButton) {
 

@@ -49,7 +49,7 @@ export default function Contacts() {
     }
 
     return (<>
-            <div className={'max-h-full '}>
+            <div className={'max-h-full h-full'}>
                 {userInitialized && cardsInitialized
                     && <>
                         <div className={'flex mb-5 items-center '}>
@@ -57,9 +57,14 @@ export default function Contacts() {
                                 <DetailedContactSort sortCriteria={sortCriteria} setSortCriteria={setSortCriteria}/>
                             </div>
                             <div className={'cursor-pointer'} onClick={() => setContactFormShown(true)}>
-                                <Button className={'bg-primary hover:bg-primary-darker'}>Add</Button>
+                                <Button className={'bg-primary hover:bg-primary-darker'}>
+                                    Add
+                                </Button>
                             </div>
                         </div>
+                        {contacts.length === 0 && <div className={'w-full h-full flex justify-center items-center text-2xl font-bold'}>
+                            No contacts available
+                        </div>}
                         {sortedContacts.map((contact, index: number) =>
                             <DetailedContactItem contact={contact} transactions={transactions[index]}
                                                  key={Math.random()}

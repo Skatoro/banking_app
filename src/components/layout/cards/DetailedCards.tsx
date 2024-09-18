@@ -12,13 +12,16 @@ export default function DetailedCards() {
     const user = userStore((state: any) => state.user)
 
     const detailedCardElements = cards.map((card: ICard, index: number) => {
-        return <DetailedCardItem card={card} key={index} cardIndex={index}
+        return <DetailedCardItem card={card} key={index} cardIndex={index} userId={user.id}
                                  name={user.full_name} hideBalance={user.settings.hideBalance}
                                  showDecimal={user.settings.showDecimal}/>
     })
 
     return (<>
             <div className={'h-full'}>
+                {cardsInitialized && cards.length === 0 && <div className={'w-full h-full flex justify-center items-center text-2xl font-bold'}>
+                    No cards available
+                </div>}
                 {cardsInitialized
                     ? detailedCardElements
                     : <div className={'h-full'}><Loader size={50}/></div>}

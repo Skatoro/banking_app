@@ -16,9 +16,7 @@ import {capitalizeWords} from "@/utils/globalFunctions/capitilizeWords";
 import {getRandomBgColor} from "@/utils/globalFunctions/getRandomBgColor";
 import {userStore} from "@/store/user";
 import {generateReferralCode} from "@/utils/globalFunctions/generateReferralCode";
-import {IUser} from "@/types/user.types";
 import {subscribeUser} from "@/utils/globalFunctions/subscribeUser";
-import {ICard} from "@/types/card.types";
 import {subscribeCards} from "@/utils/globalFunctions/subscribeCards";
 import {cardsStore} from "@/store/cards";
 
@@ -52,7 +50,7 @@ export default function Auth({type}: IAuth) {
                 if (!!fetchedUser) {
                     router.push('/')
                     subscribeUser(fetchedUser, updateUser)
-                    let fetchedCards = await fetchCards(fetchedUser)
+                    let fetchedCards = await fetchCards(fetchedUser.id)
                     if (!!fetchedCards) subscribeCards(fetchedCards, updateCards)
                 }
             }
@@ -63,6 +61,7 @@ export default function Auth({type}: IAuth) {
                 avatar_background: getRandomBgColor(),
                 referral_code: generateReferralCode(),
             };
+
             const tempErrorMessage = await signUp(data);
             setErrorMessage(tempErrorMessage)
             if (!tempErrorMessage) {

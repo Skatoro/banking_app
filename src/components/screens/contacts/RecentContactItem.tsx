@@ -4,9 +4,10 @@ import {Loader} from "@/components/ui/loader/Loader";
 import {shortenName} from "@/utils/globalFunctions/shortenName";
 import styles from './RecentContactItem.module.scss'
 import {ProfilePicture} from "@/components/ui/profilePicture/ProfilePicture";
+import {IUser} from "@/types/user.types";
 
 interface Props {
-    user: any
+    user: IUser
     isLast?: boolean
 }
 export const RecentContactItem: FC<Props> = memo(({user, isLast = false}) => {

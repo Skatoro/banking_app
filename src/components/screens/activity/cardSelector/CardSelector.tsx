@@ -38,9 +38,13 @@ export const CardSelector: FC<Props> = ({selectedCards, setMenuOpened, buttonRef
         setSelectedCardsIndexes(updatedArray);
         setSelectedCards(cards.filter((card: ICard, index: number) => updatedArray[index]));
     }
+
     return (<>
-        <div className={`rounded-lg overflow-y-scroll border-2 border-stone-500 ${styles.scrollbar}`} ref={menuRef}
-             style={{boxShadow: '0 3px 12px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.08)'}}
+        <div
+            className={`rounded-lg overflow-y-scroll 
+            ${cards.length !== 0 && 'border-2 border-stone-500'} 
+            ${styles.scrollbar}`} ref={menuRef}
+            style={{boxShadow: '0 3px 12px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.08)'}}
         >
             <div className={'max-h-80 '}>
                 {cards.map((card: ICard, index: number) =>

@@ -1,7 +1,11 @@
 import React from "react";
 import SettingsMenu from "@/components/screens/settings/settingsMenu/SettingsMenu";
+import {getAuthUser} from "@/api/api";
+import {redirect} from "next/navigation";
 
-const SettingsLayout = ({children}: { children: React.ReactNode }) => {
+async function SettingsLayout ({children}: { children: React.ReactNode }) {
+    const user = await getAuthUser();
+    if (!user) redirect('/signin')
     return (
 
         <div className={'w-full max-w-338 rounded-3xl bg-white dark:bg-bang mb-5 flex'}>
@@ -18,6 +22,6 @@ const SettingsLayout = ({children}: { children: React.ReactNode }) => {
             </div>
         </div>
     );
-};
+}
 
 export default SettingsLayout;

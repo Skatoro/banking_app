@@ -51,7 +51,7 @@ export const CardForm: FC<Props> = memo(({setShownCardForm, ownerName}) => {
         }
         const error = await createCard(cardData)
         if (!error) {
-            fetchCards(user).then((cards: ICard[]) => {
+            fetchCards(user.id).then((cards: ICard[]) => {
                 if (!!cards) {
                     subscribeCards(cards, updateCards)
                 }
