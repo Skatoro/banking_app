@@ -31,7 +31,7 @@ export default function ChangeProfilePicture() {
             <div className={'flex justify-between h-full'}>
                 <div className={'flex items-center'}>
                     <div className={'mr-5'}>
-                        <ProfilePicture user={user} size={'lg'}/>
+                        <ProfilePicture user={user} size={'lg'} zoom={true}/>
                     </div>
                     <div className={'text-black dark:text-white text-2xl font-bold'}>{user.full_name}</div>
                 </div>

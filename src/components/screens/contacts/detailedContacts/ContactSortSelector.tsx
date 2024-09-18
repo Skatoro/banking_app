@@ -20,11 +20,11 @@ export const ContactSortSelector: FC<Props> = ({sortCriteria, setSortCriteria, b
 
     return (<>
             <div className={'rounded-lg border-2 border-stone-500 overflow-hidden select-none bg-white dark:bg-bang w-40'} ref={menuRef}>
-                <SortSelectorItem Icon={Clock} onClick={() => setSortCriteria('TimeDesc')}
-                                  text={'First added'} active={sortCriteria === 'TimeDesc'}
-                />
                 <SortSelectorItem Icon={Clock} onClick={() => setSortCriteria('TimeAsc')}
-                                  text={'Last added'} active={sortCriteria === 'TimeAsc'}
+                                  text={'First added'} active={sortCriteria === 'TimeAsc'}
+                />
+                <SortSelectorItem Icon={Clock} onClick={() => setSortCriteria('TimeDesc')}
+                                  text={'Last added'} active={sortCriteria === 'TimeDesc'}
                 />
                 <SortSelectorItem Icon={ArrowDown} onClick={() => setSortCriteria('NameAsc')}
                                   text={'Name'} active={sortCriteria === 'NameAsc'}

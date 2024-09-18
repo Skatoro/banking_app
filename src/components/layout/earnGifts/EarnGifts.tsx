@@ -23,7 +23,7 @@ export default function EarnGifts() {
                         </div>
                         <div className={'flex items-center'}>
                             <div className={'text-xl text-center w-full mx-10'}>
-                                Enter your friend's code and get {referralBonusAmount} {currency} each! But remember, you can only use the referral once.
+                                Enter your friend's code and get {referralBonusAmount} {currency} each! But remember, you can only use the referral once. Example: kNIdKsMcXlXRiSDU.
                             </div>
                             <EnterReferral/>
                         </div>

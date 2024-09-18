@@ -28,7 +28,9 @@ export const DetailedContactItem: FC<Props> = memo(({contact, transactions, hand
                         ? <div
                             className={`flex justify-between w-full rounded-3xl hover:bg-secondary dark:hover:bg-bang1 cursor-pointer p-5 select-none `}>
                             <div className={'flex items-center'}>
-                                <div className={'mr-8'}><ProfilePicture user={contact} size={'md'}/></div>
+                                <div className={'mr-8'}>
+                                    <ProfilePicture user={contact} size={'md'} zoom={true}/>
+                                </div>
                                 <div className={'text-xl font-bold'}>{contact.full_name}</div>
                             </div>
                             <div className={'flex justify-between h-full'}>

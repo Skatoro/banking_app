@@ -7,11 +7,13 @@ interface Props {
     user: IUser
     size?: string
     avatarImage?: File
+    zoom?: boolean
 }
 
-export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md'}) => {
+export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md', zoom = false}) => {
     const [imageWidth, setImageWidth] = useState<number>(0)
     const [imageHeight, setImageHeight] = useState<number>(0)
+    const [activeBig, setActiveBig] = useState(false)
     let pictureStyle;
     if (size === 'sm') {
         pictureStyle = 'h-12 w-12 text-md'
@@ -36,16 +38,21 @@ export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md'})
                 setImageHeight(imageBlob.height)
                 URL.revokeObjectURL(blobURL);
             };
-        } else{
+        } else {
             setImageWidth(0)
             setImageHeight(0)
         }
     }, [avatarImage, user.avatar_url])
+    function handleBigClick(e: any) {
+        e.stopPropagation()
+        setActiveBig(!activeBig)
+    }
 
     return <>
-        <div className={cn(`select-none`, pictureStyle)}>
+        <div className={cn(`select-none`, pictureStyle, zoom && user.avatar_url && 'cursor-pointer')}>
             {imageHeight && imageWidth
-                ? <div className={'rounded-full overflow-hidden w-full h-full relative'}>
+                ? <div className={'rounded-full overflow-hidden w-full h-full relative'}
+                       onClick={handleBigClick}>
                     <div className={`absolute left-1/2 top-1/2 ${imageWidth > imageHeight ? 'h-full' : 'w-full'}`}
                          style={{transform: 'translate(-50%, -50%)', aspectRatio: imageWidth / imageHeight}}>
                         <img
@@ -66,5 +73,25 @@ export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md'})
                 </div>
             }
         </div>
+        {activeBig && zoom && user.avatar_url &&
+            <div className={' cursor-pointer fixed top-0 left-0 w-screen h-screen bg-black/30 dark:bg-white/5 z-30 flex justify-center items-center'}
+                onClick={handleBigClick}
+            >
+                <div className={'bg-black rounded-full relative overflow-hidden pointer-events-none'}
+                     style={{height: '80vh', width: '80vh'}}>
+                    <div className={`absolute left-1/2 top-1/2 ${imageWidth > imageHeight ? 'h-full' : 'w-full'}`}
+                         style={{transform: 'translate(-50%, -50%)', aspectRatio: imageWidth / imageHeight}}>
+                        <img
+                            className={'pointer-events-none w-full h-full'}
+                            src={avatarImage
+                                ? URL.createObjectURL(avatarImage)
+                                : user.avatar_url
+                                    ? user.avatar_url
+                                    : ''}
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>}
     </>
 })

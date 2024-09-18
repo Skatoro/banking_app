@@ -27,7 +27,6 @@ export const userStore = create((set) => ({
     fetchUser: async () => {
         set({initializationFinished: false})
         const user = await getUser();
-        console.log(user)
         if (user) {
             set({
                 user: {

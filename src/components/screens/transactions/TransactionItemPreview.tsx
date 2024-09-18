@@ -22,7 +22,7 @@ export const TransactionItemPreview: FC<Props> = memo(({disableForm, transaction
     const senderUser = transaction.received ? transactionUser[0] : user
 
     const [senderCard, recipientCard] = useCardsByIds([transaction.senderCardId, transaction.recipientCardId])
-    console.log(senderCard, recipientCard)
+
     const transactionTime = transaction.unformattedTime
     const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const transactionDateTime = DateTime.fromMillis(transactionTime, {zone: userTimezone});

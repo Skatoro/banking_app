@@ -29,13 +29,13 @@ export const TransactionsHeader: FC<Props> = (
 
             {hasTransactions && <div className={'flex items-center'}>
                 <div style={{boxShadow: '0 3px 12px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.08)'}}
-                     className={`mr-5 rounded-3xl py-2 px-4  cursor-pointer select-none
+                     className={`mr-5 rounded-3xl py-2 px-4  cursor-pointer select-none  text-center
                      ${isAllDates 
                          ? 'bg-primary hover:bg-primary-darker text-white' 
                          : 'bg-white hover:bg-secondary dark:bg-bang1 dark:hover:bg-bang1Darker'}`}
                      onClick={() => setIsAllDates(!isAllDates)}
                 >
-                    All
+                    {isAllDates ? 'All' : 'Today'}
                 </div>
                 <CalendarWrapper ranges={ranges} setRanges={setRanges} windowClass={'right-0 top-12'}/>
             </div>}

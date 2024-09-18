@@ -17,7 +17,7 @@ export const RecentContactItem: FC<Props> = memo(({user, isLast = false}) => {
                     <Loader size={40}/>
             </div>
                 : <div className={`relative ${styles.hoverParent}`}>
-                    <ProfilePicture user={user} />
+                    <ProfilePicture user={user} zoom={true}/>
                     <div className={`text-center  w-full h-5 `}>
                         <div className={'font-bold text-sm overflow-hidden whitespace-nowrap text-ellipsis'} >
                             {shortenName(user.full_name)}
