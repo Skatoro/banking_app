@@ -1,9 +1,8 @@
 import {ChevronDown, LucideProps} from "lucide-react";
-import React, {FC, InputHTMLAttributes, memo, PropsWithChildren, useEffect, useRef, useState} from "react";
+import React, {FC, InputHTMLAttributes, memo, useState} from "react";
 import styles from './CardSettingItem.module.scss'
 import {DropdownData} from "@/components/screens/cards/cardSettings/cardSettingItem/cardSettingItem.types";
 import cn from "clsx";
-import {useHandleOutsideClick} from "@/hooks/useHandleOutsideClick";
 
 export interface Props extends InputHTMLAttributes<HTMLButtonElement> {
     text: string;

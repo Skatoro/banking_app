@@ -1,6 +1,6 @@
 'use client'
 
-import {FC, useState} from "react";
+import {FC} from "react";
 import {HeaderTab} from "@/components/layout/header/HeaderTab";
 import {headerTabsData} from "@/constants/headerTabsData";
 import {headerStore} from "@/store/header";
