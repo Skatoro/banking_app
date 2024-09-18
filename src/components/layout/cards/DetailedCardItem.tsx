@@ -75,7 +75,7 @@ export const DetailedCardItem: FC<Props> = memo(({card, cardIndex, name, userId,
 
                 <div className={'flex'}>
                     <div className={'mr-5 mt-6 font-bold text-4xl'}>
-                        <div className={'mb-3'}>
+                        <div className={'mb-3 flex justify-end'}>
                             <ConditionalBalance
                                 balance={Number(card.balance)} emojiClass={'text-6xl mt-1'} afterText={currency}
                                 hideBalance={hideBalance} showDecimal={showDecimal}
