@@ -35,7 +35,7 @@ export const Transactions: FC<Props> = ({transactions, stepLoading = true}) => {
     const transactionItemsElements = shownTransactions.map((transaction: ITransaction, index: number) => {
 
         return <TransactionItem
-            transaction={transaction} key={index} hideBalance={userSettings.hideBalance}
+            transaction={transaction} key={transaction.unformattedTime} hideBalance={userSettings.hideBalance}
             user={transactionUsers[index]} showDecimal={userSettings.showDecimal}
         />
     })

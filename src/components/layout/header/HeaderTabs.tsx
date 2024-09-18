@@ -12,10 +12,10 @@ export const HeaderTabs: FC<Props> = ({}) => {
     const setActiveTabName = headerStore((state: any) => state.setActiveTabName)
     const activeTab = headerStore((state: any) => state.activeTab)
 
-    const tabsElements = headerTabsData.map((tab, currentIndex) => {
+    const tabsElements = headerTabsData.map((tab) => {
         const isSelected = activeTab === tab.title
         return <HeaderTab
-            key={currentIndex}
+            key={tab.title}
             isSelected={isSelected}
             title={tab.title}
             address={tab.address}

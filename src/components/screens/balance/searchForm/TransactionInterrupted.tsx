@@ -1,7 +1,5 @@
 'use client'
-import React, {FC, InputHTMLAttributes, memo} from "react";
-import {ProfilePicture} from "@/components/ui/profilePicture/ProfilePicture";
-import {IUser} from "@/types/user.types";
+import React, {FC, memo} from "react";
 import {Button} from "@/components/ui/button/Button";
 import {FormFrame} from "@/components/ui/formFrame/FormFrame";
 

@@ -39,6 +39,7 @@ export default function MainProvider({children}: PropsWithChildren<unknown>) {
             }
         })
     }, []);
+
     useEffect(() => {
         if (user.settings.nightMode) {
             document.body.classList.add('dark')

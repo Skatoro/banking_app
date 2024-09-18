@@ -1,10 +1,9 @@
-import useUserByCardID from "@/hooks/useUserByID";
+import useUserByID from "@/hooks/useUserByID";
 import {splitCardNumber} from "@/utils/globalFunctions/splitCardNumber";
 import {SearchCardItem} from "@/components/screens/balance/searchForm/SearchCardItem";
 import React, {Dispatch, FC, SetStateAction} from "react";
 import {ICard} from "@/types/card.types";
 import {IUser} from "@/types/user.types";
-import useUserByID from "@/hooks/useUserByID";
 
 interface Props {
     user: IUser

@@ -65,11 +65,13 @@ export default function Contacts() {
                         {contacts.length === 0 && <div className={'w-full h-full flex justify-center items-center text-2xl font-bold'}>
                             No contacts available
                         </div>}
-                        {sortedContacts.map((contact, index: number) =>
-                            <DetailedContactItem contact={contact} transactions={transactions[index]}
-                                                 key={Math.random()}
+                        {sortedContacts.map((contact, index: number) => {
+                            if (!contact) return
+                            return <DetailedContactItem contact={contact} transactions={transactions[index]}
+                                                 key={contact.id}
                                                  handleDelete={() => deleteContact(user.id, contact.id)}
-                            />
+                            />}
+
                         )}
                     </>}
             </div>

@@ -12,7 +12,8 @@ export default function DetailedCards() {
     const user = userStore((state: any) => state.user)
 
     const detailedCardElements = cards.map((card: ICard, index: number) => {
-        return <DetailedCardItem card={card} key={index} cardIndex={index} userId={user.id}
+
+        return <DetailedCardItem card={card} key={card.id} cardIndex={index} userId={user.id}
                                  name={user.full_name} hideBalance={user.settings.hideBalance}
                                  showDecimal={user.settings.showDecimal}/>
     })

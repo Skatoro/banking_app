@@ -72,7 +72,7 @@ export default function ContactsMain() {
                         if (index < childrenAmount) {
                             if (contactUser?.full_name) {
                                 return <RecentContactItem
-                                    key={index}
+                                    key={contactUser.id}
                                     user={contactUser}
                                     isLast={index === childrenAmount - 1}
                                 />

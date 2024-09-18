@@ -59,7 +59,7 @@ export default function Auth({type}: IAuth) {
                 first_name: capitalizeWords(data.first_name),
                 last_name: capitalizeWords(data.last_name),
                 avatar_background: getRandomBgColor(),
-                referral_code: generateReferralCode(),
+                referral_code: generateReferralCode()
             };
 
             const tempErrorMessage = await signUp(data);

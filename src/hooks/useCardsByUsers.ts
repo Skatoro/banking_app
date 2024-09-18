@@ -4,7 +4,7 @@ import {IUser} from "@/types/user.types";
 export default function useCardsByUsers(users: IUser[]) {
     const cardsByUserQueries = useQueries({
         queries: users ? users?.map((contact: any) => ({
-            queryKey: ['card', contact.id],
+            queryKey: ['card', contact?.id],
             queryFn: async () => {
                 const response = await fetch(`/api/getAllUserCards/${contact.id}`, {
                     mode: 'no-cors',

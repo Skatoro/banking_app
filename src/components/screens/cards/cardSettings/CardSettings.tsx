@@ -8,10 +8,10 @@ import {BlockCardWrapper} from "@/components/screens/cards/cardSettings/cardSett
 import {cardsStore} from "@/store/cards";
 
 export const CardSettings = memo(() => {
-
     const activeCardIndex = cardsStore((state: any) => state.active)
     const cards = cardsStore((state: any) => state.cards)
     const activeCard = cards[activeCardIndex]
+
     return (
         <div className={'mb-5'}>
             <CardSettingItem Icon={CreditCard} text={'Show Card Details'} DropdownContent={CardDetails}/>

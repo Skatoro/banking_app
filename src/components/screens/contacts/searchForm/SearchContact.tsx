@@ -33,7 +33,7 @@ export const SearchContact: FC<Props> = memo(({setFormShown}) => {
 
     const availableContactElements = filteredExistingMyselfSystem?.map((userContact, index) =>
         <SearchContactItem
-            key={index} onClick={() => setSelectedItemIndex(index)}
+            key={userContact.id} onClick={() => setSelectedItemIndex(index)}
             user={userContact} isActive={selectedItemIndex === index}
         />)
 
