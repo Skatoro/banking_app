@@ -20,10 +20,10 @@ export const RecentCards: FC<Props> = ({setSelectedItemIndex, selectedItemIndex}
 
     const transactionUserIDs = activeCard?.transactions.map((transaction: ITransaction) => {
         return transaction.transactionUserName !== 'System' && transaction.transactionUserId;
-    }).filter((id: any) => id !== false)
+    }).filter((id: any) => id !== false).reverse()
     const transactionCardIDs = activeCard?.transactions.map((transaction: ITransaction) => transaction.received
         ? transaction.senderCardId
-        : transaction.recipientCardId).filter((id: any) => id !== undefined)
+        : transaction.recipientCardId).filter((id: any) => id !== undefined).reverse()
 
     const transactionUsers = useUsersByMultipleIDs(transactionUserIDs)
     const transactionCards = useCardsByIds(transactionCardIDs)
