@@ -53,9 +53,9 @@ export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md', 
                     <div className={`absolute left-1/2 top-1/2 ${imageWidth > imageHeight ? 'h-full' : 'w-full'}`}
                          style={{transform: 'translate(-50%, -50%)', aspectRatio: imageWidth / imageHeight}}>
                         <img className={'pointer-events-none'} alt={''}
-                            src={avatarImage
-                                ? URL.createObjectURL(avatarImage)
-                                : user.avatar_url || ''}
+                             src={avatarImage
+                                 ? URL.createObjectURL(avatarImage)
+                                 : user.avatar_url || ''}
                         />
                     </div>
                 </div>
