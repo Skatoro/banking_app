@@ -38,6 +38,7 @@ export const CurrentCard: FC<Props> = memo(({card, name, haveCard, setShownCardF
                             cardCvv={card.cvv}
                             cardName={name}
                             paymentNetworkImage={paymentNetworkImage}
+
                         />
                     </>
                     : <div className={'flex justify-center items-center '}>

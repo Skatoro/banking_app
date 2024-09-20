@@ -48,7 +48,7 @@ export default function TransactionsWrapper() {
                 />
                 {trimmedTransactions.length !== 0
                     ? <Transactions transactions={trimmedTransactions} />
-                    : <div>No transactions</div>}
+                    : <div className={'h-full flex justify-center items-center font-bold text-lg'}>No transactions</div>}
             </>
             : <Loader size={50}/>}
     </div>

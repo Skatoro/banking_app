@@ -1,13 +1,7 @@
 import Image from "next/image";
-import {FC, memo,} from "react";
+import {FC,} from "react";
 import {CvvButton} from "@/components/screens/cards/currentCard/cvvButton/CvvButton";
 import {CardNumber} from "@/components/screens/cards/currentCard/cardNumber/CardNumber";
-import {BadgePlus} from "lucide-react";
-import {ICard} from "@/types/card.types";
-import questionMarkWhite from '../../../../../public/questionMarkWhite.svg'
-import mastercardLogo from '../../../../../public/mastercardLogo.svg'
-import visaLogo from '../../../../../public/visaLogo.svg'
-import {userStore} from "@/store/user";
 
 interface Props {
     cardNumber: string;
@@ -20,12 +14,11 @@ interface Props {
 
 export const CardInterface: FC<Props> = (
     {cardNumber, cardCvv, cardName, paymentNetworkImage, cardExpYear, cardExpMonth}) => {
-
     return (<>
         <div className={'flex flex-col justify-between h-full'}>
             <div className={'flex justify-between '}>
                 <div>{cardName}</div>
-                <Image src={paymentNetworkImage} alt={'mastercardLogo'} className={'w-6 h-6 mr-4 select-none'}/>
+                <Image src={paymentNetworkImage} alt={'mastercardLogo'} className={'w-8 select-none'}/>
             </div>
             <div className={'flex justify-between items-center relative select-none mb-8'}>
                 <div>
