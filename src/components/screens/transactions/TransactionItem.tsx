@@ -37,7 +37,7 @@ export const TransactionItem: FC<Props> = memo(({transaction, user, hideBalance,
         >
             <div className={'flex w-1/2'}>
                 <div className={'mr-5'}>
-                    <ProfilePicture user={user}/>
+                    <ProfilePicture user={user} zoom={true}/>
                 </div>
                 <div className={'flex justify-between flex-col py-1'}>
                     <div className={'font-bold'}>

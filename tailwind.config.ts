@@ -16,8 +16,8 @@ const config: Config = {
             'primary-darker': '#50346b',
             'secondary': '#f5f5f5',
             'secondary-darker': '#ececec',
-            'pink': '#f3a1a1',
-            'pink-lighter': '#fdc5c5',
+            'pink': '#f3aeae',
+            'pink-lighter': '#fad2d2',
             'white': '#fff',
             'black': '#000',
             'grey': '#333333',
@@ -33,6 +33,7 @@ const config: Config = {
         }),
         extend: {
             width: {
+                '140': '35rem',
                 '72': '18rem',
                 '18': '4.5rem'
             },

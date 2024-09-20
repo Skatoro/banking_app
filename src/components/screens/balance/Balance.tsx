@@ -17,6 +17,7 @@ import {ConditionalBalance} from "@/components/ui/conditionalBalance/Conditional
 
 export default function Balance() {
     const [selectCardFormShown, setSelectCardFormShown] = useState<boolean>(false);
+    const [transferFormShown, setTransferFormShown] = useState<boolean>(false);
     const [selectedCard, setSelectedCard] = useState<ICard | null>(null)
 
     const cardsInitialized = cardsStore((state: any) => state.cardsInitialized)
@@ -64,18 +65,18 @@ export default function Balance() {
                                  infoTitle={balanceFormInfoTitle} infoText={balanceFormInfoText}
                     >
                         <SearchCard disableForm={() => setSelectCardFormShown(false)}
-                                    setSelectedCard={setSelectedCard}/>
+                                    setSelectedCard={setSelectedCard} openTransferForm={() => setTransferFormShown(true)}/>
                     </FormFrame>
                     : <TransactionInterrupted onClick={() => setSelectCardFormShown(false)}/>)}
 
-            {selectedCard &&
-                <FormFrame title={'Transfer Details'} disableForm={() => setSelectedCard(null)}
+            {transferFormShown && selectedCard &&
+                <FormFrame title={'Transfer Details'} disableForm={() => setTransferFormShown(false)}
                            infoTitle={transferInfoTitle} infoText={transferInfoText}
                 >
                     <TransferForm
                         recipientCard={selectedCard}
                         personalCard={cards[activeCardIndex]}
-                        disableForm={() => setSelectedCard(null)}
+                        disableForm={() => setTransferFormShown(false)}
                     />
                 </FormFrame>
             }

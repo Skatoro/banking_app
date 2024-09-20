@@ -7,7 +7,7 @@ export const cardsStore = create((set) => ({
     active: 0 as number,
     cardsInitialized: false as boolean,
     updateCards: (newCardsArray: ICard[]) => set(() => ({
-        cards: newCardsArray,
+        cards: JSON.parse(JSON.stringify(newCardsArray)),
     })),
     updateActive: (newActive: number) => set(() => {
         return ({

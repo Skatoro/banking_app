@@ -10,8 +10,9 @@ interface Props {
     contacts: IUser[]
     selectedItemIndex: number | undefined
     setSelectedItemIndex: Dispatch<SetStateAction<number | undefined>>
+    setSelectedCard: Dispatch<SetStateAction<ICard | null>>
 }
-export const CardsByContacts: FC<Props> = ({cards, contacts, selectedItemIndex, setSelectedItemIndex}) => {
+export const CardsByContacts: FC<Props> = ({cards, contacts, selectedItemIndex, setSelectedItemIndex, setSelectedCard}) => {
 
     const cardsWithUsers = cards.map((card: ICard, index) => {
         if (!card) return
@@ -21,7 +22,10 @@ export const CardsByContacts: FC<Props> = ({cards, contacts, selectedItemIndex, 
 
         const cardNumber = splitCardNumber(secureCardNumber(card.number))
         return <SearchCardItem
-            key={card.id} number={cardNumber} onClick={() => setSelectedItemIndex(index)}
+            key={card.id} number={cardNumber} onClick={() => {
+            setSelectedItemIndex(index)
+            setSelectedCard(card)
+        }}
             user={matchingUser} isActive={selectedItemIndex === index} />
     });
 

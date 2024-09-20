@@ -13,19 +13,25 @@ import {CardsByContacts} from "@/components/screens/balance/searchForm/CardsByCo
 import {userStore} from "@/store/user";
 import {ICard} from "@/types/card.types";
 import {RecentCards} from "@/components/screens/balance/searchForm/RecentCards";
+import {cardsStore} from "@/store/cards";
 
 interface Props {
     disableForm: () => void
     setSelectedCard: Dispatch<SetStateAction<ICard | null>>
+    openTransferForm: () => void
 }
 
 // SearchCard & SearchContact are very similar, yet they have different logic.
 // My heart bleeds, but I couldn't make them in one component that won`t be a million line long, so I made it readable
-export const SearchCard: FC<Props> = memo(({disableForm, setSelectedCard}) => {
+export const SearchCard: FC<Props> = memo(({disableForm, setSelectedCard, openTransferForm}) => {
     const user = userStore((state: any) => state.user)
     const [selectedItemIndex, setSelectedItemIndex] = useState<number | undefined>()
     const [searchTerm, setSearchTerm] = useState('')
     const contacts = contactsStore((state: any) => state.contacts)
+
+    const activeIndex = cardsStore((state: any) => state.active)
+    const cards = cardsStore((state: any) => state.cards)
+    const activeCard = cards[activeIndex]
 
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
     const cardByNumber = useCardByNumber(debouncedSearchTerm)
@@ -35,16 +41,8 @@ export const SearchCard: FC<Props> = memo(({disableForm, setSelectedCard}) => {
     const cardsByContacts = useCardsByUsers(foundContacts)
 
     function onSubmit() {
-        if (typeof selectedItemIndex === 'number') {
-            if (cardsByContacts.length !== 0) {
-                setSelectedCard(cardsByContacts[selectedItemIndex])
-            }
-            if (cardByNumber) {
-                setSelectedCard(cardByNumber)
-            }
-            disableForm()
-        }
-
+        openTransferForm()
+        disableForm()
     }
 
     useEffect(() => {
@@ -60,12 +58,13 @@ export const SearchCard: FC<Props> = memo(({disableForm, setSelectedCard}) => {
                 {!debouncedSearchTerm ? 'Recent cards' : 'Search result'}
             </div>
             <div className={'h-[35vh] rounded-md border-2 border-black/40 mb-4 overflow-y-auto'}>
-                {!debouncedSearchTerm &&
-                    <RecentCards selectedItemIndex={selectedItemIndex} setSelectedItemIndex={setSelectedItemIndex}/>}
+                {!debouncedSearchTerm && activeCard?.transactions &&
+                    <RecentCards selectedItemIndex={selectedItemIndex} transactions={activeCard.transactions}
+                                 setSelectedItemIndex={setSelectedItemIndex} setSelectedCard={setSelectedCard}/>}
                 <CardByNumber card={cardByNumber} user={user} selectedItemIndex={selectedItemIndex}
-                              setSelectedItemIndex={setSelectedItemIndex}/>
+                              setSelectedItemIndex={setSelectedItemIndex} setSelectedCard={setSelectedCard}/>
                 <CardsByContacts cards={cardsByContacts} contacts={contacts} selectedItemIndex={selectedItemIndex}
-                                 setSelectedItemIndex={setSelectedItemIndex}/>
+                                 setSelectedItemIndex={setSelectedItemIndex} setSelectedCard={setSelectedCard}/>
             </div>
         </div>
         <div className={'flex'}>

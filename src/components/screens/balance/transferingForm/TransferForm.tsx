@@ -8,7 +8,6 @@ import {ProfilePicture} from "@/components/ui/profilePicture/ProfilePicture";
 import useUserByID from "@/hooks/useUserByID";
 import {handleMoneyInput} from "@/utils/globalFunctions/handleMoneyInput";
 import {useDebounce} from "@/hooks/useDebounce";
-import {cardsStore} from "@/store/cards";
 import {userStore} from "@/store/user";
 import {prettifyBalance} from "@/utils/globalFunctions/prettifyBalance";
 import {prettifyMoneyInput} from "@/utils/globalFunctions/prettifyMoneyInput";
@@ -63,6 +62,7 @@ export const TransferForm: FC<Props> = memo(({recipientCard, personalCard, disab
             setFormError('')
         }
     }, [debouncedTransferAmount]);
+
     function onSubmit() {
         if (!formError) {
             startTimeout()
@@ -72,11 +72,15 @@ export const TransferForm: FC<Props> = memo(({recipientCard, personalCard, disab
     return <>
         <div>
             <div className={'flex justify-center mb-7'}>
-                <div className={'mr-3 '}>
-                    <ProfilePicture user={recipientUser} size={'md'} />
-                </div>
-                <div className={'text-ellipsis flex items-center  text-3xl'}>
-                    {recipientUser.full_name}
+                <div className={'flex max-w-64'}>
+                    <div className={'mr-3 '}>
+                        <ProfilePicture user={recipientUser} size={'md'}/>
+                    </div>
+                    <div className={' flex items-center text-2xl max-w-48 '}>
+                        <div className={'text-ellipsis overflow-hidden text-nowrap'}>
+                            {recipientUser.full_name}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>

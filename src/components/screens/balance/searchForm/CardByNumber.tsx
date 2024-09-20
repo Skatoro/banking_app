@@ -10,8 +10,9 @@ interface Props {
     card: ICard
     selectedItemIndex: number | undefined
     setSelectedItemIndex: Dispatch<SetStateAction<number | undefined>>
+    setSelectedCard: Dispatch<SetStateAction<ICard | null>>
 }
-export const CardByNumber: FC<Props> = ({card, selectedItemIndex, setSelectedItemIndex, user}) => {
+export const CardByNumber: FC<Props> = ({card, selectedItemIndex, setSelectedItemIndex, user, setSelectedCard}) => {
     const matchingUser = useUserByID(card?.user_id);
     if (matchingUser && user.id === matchingUser.id) return
     const cardNumber = splitCardNumber(card?.number)
@@ -20,6 +21,9 @@ export const CardByNumber: FC<Props> = ({card, selectedItemIndex, setSelectedIte
         number={cardNumber}
         user={matchingUser}
         isActive={selectedItemIndex === 0}
-        onClick={() => setSelectedItemIndex(0)}
+        onClick={() => {
+            setSelectedItemIndex(0)
+            setSelectedCard(card)
+        }}
     />
 }
