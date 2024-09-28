@@ -63,7 +63,12 @@ export default function Auth({type}: IAuth) {
             };
 
             const tempErrorMessage = await signUp(data);
-            setErrorMessage(tempErrorMessage)
+            if(tempErrorMessage === 'Email address not authorized') {
+                setErrorMessage('Supabase(the Back-End handler) is not supporting registrations via email since 26 September 2024. Developer comment:`Currently this behavior is not supported and we\'ll be rolling out a fix for it during the first week of October.`')
+            } else {
+                setErrorMessage(tempErrorMessage)
+            }
+
             if (!tempErrorMessage) {
                 router.push('/signup/confirm')
             }
@@ -103,9 +108,9 @@ export default function Auth({type}: IAuth) {
                     {...register('password', {
                         required: true,
                     })}
-                    placeholder={'Password'} type={'password'} Icon={KeyRound} className={"mb-6"}
-                    error={{message: errorMessage, type: "min"}}
+                    placeholder={'Password'} type={'password'} Icon={KeyRound} className={`${!errorMessage ? 'mb-6' : 'mb-2'}`}
                 />
+                <div className={'text-start text-red-600 text-xs ml-10'}>{errorMessage}</div>
                 <div className={"flex justify-end items-center"}>
                     {type == 'Login'
                         ? <Link href={'/signup'} className={styles.link}>Create account</Link>
