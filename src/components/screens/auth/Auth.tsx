@@ -110,7 +110,7 @@ export default function Auth({type}: IAuth) {
                     })}
                     placeholder={'Password'} type={'password'} Icon={KeyRound} className={`${!errorMessage ? 'mb-6' : 'mb-2'}`}
                 />
-                <div className={'text-start text-red-600 text-xs ml-10'}>{errorMessage}</div>
+                {errorMessage && <div className={'text-start text-red-600 text-xs ml-10 mb-2'}>{errorMessage}</div>}
                 <div className={"flex justify-end items-center"}>
                     {type == 'Login'
                         ? <Link href={'/signup'} className={styles.link}>Create account</Link>
