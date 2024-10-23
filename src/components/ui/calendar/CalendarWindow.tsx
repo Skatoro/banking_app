@@ -1,4 +1,4 @@
-import {Dispatch, FC, MutableRefObject, RefAttributes, SetStateAction, useEffect, useRef} from "react";
+import {Dispatch, FC, MutableRefObject, SetStateAction, useEffect, useRef} from "react";
 import {DateRangePicker, Range} from "react-date-range";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
@@ -32,7 +32,7 @@ export const CalendarWindow: FC<Props> = ({
         >
             <DateRangePicker
                 rangeColors={colors}
-                className={'rounded-3xl overflow-hidden'}
+                className={'rounded-3xl overflow-hidden z-50 absolute'}
                 onChange={item => {
                     if (item.selection.endDate) {
                         item.selection.endDate = getDateTillMidnight(item.selection.endDate)
