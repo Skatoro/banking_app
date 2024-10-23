@@ -19,6 +19,8 @@ import {generateReferralCode} from "@/utils/globalFunctions/generateReferralCode
 import {subscribeUser} from "@/utils/globalFunctions/subscribeUser";
 import {subscribeCards} from "@/utils/globalFunctions/subscribeCards";
 import {cardsStore} from "@/store/cards";
+import {IUser} from "@/types/user.types";
+import {ICard} from "@/types/card.types";
 
 interface IAuth {
     type?: 'Login' | 'Register',
@@ -63,14 +65,20 @@ export default function Auth({type}: IAuth) {
             };
 
             const tempErrorMessage = await signUp(data);
-            if(tempErrorMessage === 'Email address not authorized') {
-                setErrorMessage('Supabase(the Back-End handler) is not supporting registrations via email since 26 September 2024. Developer comment:`Currently this behavior is not supported and we\'ll be rolling out a fix for it during the first week of October.`')
-            } else {
+            if(tempErrorMessage) {
                 setErrorMessage(tempErrorMessage)
-            }
-
-            if (!tempErrorMessage) {
-                router.push('/signup/confirm')
+            } else {
+                await fetchUser().then((user: IUser) => {
+                    if (!!user) {
+                        subscribeUser(user, updateUser)
+                        fetchCards(user.id).then((cards: ICard[]) => {
+                            if (!!cards) {
+                                subscribeCards(cards, updateCards)
+                            }
+                        })
+                    }
+                })
+                router.push('/')
             }
         }
         setIsLoading(false);
