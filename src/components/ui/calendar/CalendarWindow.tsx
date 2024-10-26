@@ -32,7 +32,7 @@ export const CalendarWindow: FC<Props> = ({
         >
             <DateRangePicker
                 rangeColors={colors}
-                className={'rounded-3xl overflow-hidden z-50 absolute'}
+                className={'rounded-3xl overflow-hidden '}
                 onChange={item => {
                     if (item.selection.endDate) {
                         item.selection.endDate = getDateTillMidnight(item.selection.endDate)

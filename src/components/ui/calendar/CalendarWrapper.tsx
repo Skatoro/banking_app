@@ -20,8 +20,8 @@ export const CalendarWrapper: FC<Props> = ({ranges, setRanges, windowClass}) => 
     return (<>
         <div
             className={`rounded-full py-2 cursor-pointer flex px-4
-            ${calendarOpened 
-                ? 'bg-primary hover:bg-primary-darker text-white' 
+            ${calendarOpened
+                ? 'bg-primary hover:bg-primary-darker text-white'
                 : 'bg-white hover:bg-secondary text-black dark:bg-bang1 dark:hover:bg-bang1Darker dark:text-white'}`}
             onClick={() => setCalendarOpened(!calendarOpened)}
             style={{boxShadow: '0 3px 12px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.08)'}}
@@ -29,11 +29,11 @@ export const CalendarWrapper: FC<Props> = ({ranges, setRanges, windowClass}) => 
         >
             <div className={'mr-3 select-none'}>Date Range</div>
             <div className={`flex items-center `}>
-                <CalendarDays size={20} />
+                <CalendarDays size={20}/>
             </div>
         </div>
         {calendarOpened &&
-            <div className={cn('absolute', windowClass)}>
+            <div className={cn('absolute z-50', windowClass)}>
                 <CalendarWindow
                     ranges={ranges}
                     setRanges={setRanges}
