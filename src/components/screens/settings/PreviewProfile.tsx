@@ -49,9 +49,9 @@ export const PreviewProfile: FC<Props> = ({disablePreview, image}) => {
 
     return (<>
             <FormFrame disableForm={disablePreview} title={'Preview'}>
-                <div className={'flex items-center mb-6'}>
-                    <div className={'mr-6'}>
-                        <ProfilePicture user={user} size={'lg'} avatarImage={image}/>
+                <div className={'items-center mb-6 flex flex-col'}>
+                    <div className={'mb-6'}>
+                        <ProfilePicture user={user} size={'5xl'} avatarImage={image}/>
                     </div>
                     <div className={'text-2xl font-bold'}>
                         {user.full_name}

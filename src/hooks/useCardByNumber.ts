@@ -10,6 +10,5 @@ export default function useCardByNumber(number: string) {
         },
         enabled: number.length === 16 && hasNumbersOnly(number),
     });
-    const result = data && data[0]
-    return result;
+    return data && data[0];
 }

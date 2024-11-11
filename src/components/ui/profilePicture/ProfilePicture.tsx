@@ -21,6 +21,7 @@ export const ProfilePicture: FC<Props> = memo(({user, avatarImage, size = 'md', 
     if (size === 'md') pictureStyle = 'h-16 w-16 text-lg'
     if (size === 'lg') pictureStyle = 'h-20 w-20 text-2xl'
     if (size === '3xl') pictureStyle = 'h-40 w-40 text-5xl'
+    if (size === '5xl') pictureStyle = 'h-72 w-72 text-5xl'
 
     useEffect(() => {
         if (avatarImage || user.avatar_url) {
